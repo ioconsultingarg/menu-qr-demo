@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú — Pizzería Don Mario</title>
+<meta name="description" content="Menú digital de Pizzería Don Mario. Escaneá el QR de la mesa y pedí por WhatsApp.">
+<meta name="theme-color" content="#c1272d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="menu-header">
+  <div class="container">
+    <h1 id="nombreNegocio">Cargando menú...</h1>
+    <p class="menu-updated">Actualizado el <span id="fechaActualizado">—</span></p>
+  </div>
+</header>
+
+<nav class="category-nav" id="categoryNav" aria-label="Categorías del menú"></nav>
+
+<main class="container">
+  <div id="menuContent" aria-live="polite">
+    <p class="loading">Cargando el menú…</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Menú digital · Demo desarrollado por IO Consulting</p>
+  </div>
+</footer>
+
+<a id="whatsappFloat" class="whatsapp-float" href="#" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<script src="js/menu.js"></script>
+</body>
+</html>

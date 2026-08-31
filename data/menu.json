@@ -1,0 +1,44 @@
+{
+  "negocio": {
+    "nombre": "Pizzería Don Mario",
+    "whatsapp": "5491155555555",
+    "actualizado": "2026-08-31"
+  },
+  "categorias": [
+    {
+      "id": "clasicas",
+      "nombre": "Pizzas clásicas",
+      "items": [
+        { "id": "muzzarella", "nombre": "Muzzarella", "descripcion": "Salsa de tomate casera, muzzarella y aceitunas.", "precio": 6500, "agotado": false, "destacado": false },
+        { "id": "napolitana", "nombre": "Napolitana", "descripcion": "Muzzarella, tomate en rodajas, ajo y orégano.", "precio": 7200, "agotado": false, "destacado": true },
+        { "id": "fugazzeta", "nombre": "Fugazzeta rellena", "descripcion": "Doble masa, muzzarella y cebolla a la parrilla.", "precio": 8900, "agotado": false, "destacado": false },
+        { "id": "calabresa", "nombre": "Calabresa", "descripcion": "Muzzarella, longaniza calabresa y morrones.", "precio": 8200, "agotado": true, "destacado": false }
+      ]
+    },
+    {
+      "id": "especiales",
+      "nombre": "Pizzas especiales",
+      "items": [
+        { "id": "cuatro-quesos", "nombre": "Cuatro quesos", "descripcion": "Muzzarella, roquefort, provolone y parmesano.", "precio": 9800, "agotado": false, "destacado": false },
+        { "id": "rucula-jamon", "nombre": "Rúcula y jamón crudo", "descripcion": "Base blanca, rúcula fresca, jamón crudo y parmesano.", "precio": 10500, "agotado": false, "destacado": false }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nombre": "Bebidas",
+      "items": [
+        { "id": "gaseosa-linea", "nombre": "Gaseosa línea Coca-Cola 500ml", "descripcion": "", "precio": 2200, "agotado": false, "destacado": false },
+        { "id": "cerveza-ipa", "nombre": "Cerveza artesanal IPA 500ml", "descripcion": "", "precio": 3400, "agotado": false, "destacado": false },
+        { "id": "agua", "nombre": "Agua mineral 500ml", "descripcion": "Con o sin gas", "precio": 1500, "agotado": false, "destacado": false }
+      ]
+    },
+    {
+      "id": "postres",
+      "nombre": "Postres",
+      "items": [
+        { "id": "flan", "nombre": "Flan casero", "descripcion": "Con dulce de leche y crema.", "precio": 3200, "agotado": false, "destacado": false },
+        { "id": "helado", "nombre": "Postre helado", "descripcion": "Vainilla y chocolate con salsa caliente.", "precio": 3500, "agotado": false, "destacado": false }
+      ]
+    }
+  ]
+}

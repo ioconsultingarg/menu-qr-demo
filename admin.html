@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del dueño — Menú Don Mario</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body class="admin-body">
+
+<header class="menu-header">
+  <div class="container">
+    <h1>Panel del dueño</h1>
+    <p class="menu-updated">Editá el menú y generá el QR para imprimir en las mesas.</p>
+  </div>
+</header>
+
+<main class="container admin-main">
+
+  <section class="admin-panel">
+    <h2>QR para la mesa</h2>
+    <p>Este QR apunta a la página del menú público (<code id="menuUrlText">index.html</code>). Descargalo o hacé captura para imprimirlo.</p>
+    <div id="qrcode" class="qr-box"></div>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-header">
+      <h2>Editar platos</h2>
+      <button id="btnAgregar" class="btn btn-primary">+ Agregar plato</button>
+    </div>
+    <p class="admin-hint">Cambiá precios, marcá "agotado" o "plato del día", y al terminar tocá <strong>"Descargar menu.json"</strong> — reemplazá ese archivo en el repo (carpeta <code>data/</code>) y subilo a GitHub para publicar los cambios.</p>
+    <div id="editorList"></div>
+  </section>
+
+  <section class="admin-panel">
+    <h2>Guardar cambios</h2>
+    <p class="admin-hint">Esto genera el archivo actualizado. No se sube solo a GitHub — hay que reemplazar <code>data/menu.json</code> en el repo y hacer commit + push.</p>
+    <button id="btnDescargar" class="btn btn-whatsapp">Descargar menu.json</button>
+  </section>
+
+  <section class="admin-panel admin-panel-note">
+    <h2>Nota</h2>
+    <p>Esta es una versión demo: la edición se hace exportando el archivo a mano. En una implementación real para un cliente, este panel se conecta a una base de datos (Supabase o Google Sheets) y los cambios se ven al instante en el menú público, sin descargar ni subir nada.</p>
+  </section>
+
+</main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
