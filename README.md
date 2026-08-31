@@ -11,6 +11,8 @@ El dueño de un restaurante cambia precios o se le agota un plato varias veces p
 - Menú público: `https://ioconsultingarg.github.io/menu-qr-demo/`
 - Panel del dueño (privado, no lincear públicamente): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
 
+![Demo del panel admin: edición de precio y disponibilidad en vivo, con generación de QR](assets/menu-qr-admin-demo.gif)
+
 ## Stack
 
 - HTML/CSS/JS puro, sin build step
