@@ -1,6 +1,6 @@
 # menu-qr-demo
 
-Menú digital para escanear por QR en la mesa, demo de portfolio de **IO Consulting**. Mismo caso de uso que `landing-comercio-demo` ("Pizzería Don Mario"), para mostrar dos soluciones distintas sobre el mismo cliente ficticio.
+Menú digital para escanear por QR en la mesa, demo de portfolio de **IO Consulting**. Mismo caso de uso que `landing-comercio-demo` ("Pizzería IO Consulting"), para mostrar dos soluciones distintas sobre el mismo cliente ficticio.
 
 ## Problema que resuelve
 
