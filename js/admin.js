@@ -120,6 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function escapeAttr(str) {
-    return String(str).replace(/"/g, '&quot;');
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
   }
 });
