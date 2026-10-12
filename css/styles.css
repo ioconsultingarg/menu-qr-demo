@@ -14,6 +14,18 @@
   --radius: 14px;
   --shadow: 0 10px 30px rgba(43, 35, 32, 0.08);
   --max-width: 900px;
+  --ease-fluid: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Movimiento: solo transform y opacity, y todo se apaga con "reducir movimiento" (al final del archivo) */
+@keyframes entra-fila {
+  from { opacity: 0; transform: translateY(12px); }
+}
+@keyframes entra-escala {
+  from { opacity: 0; transform: scale(0.7); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 * { box-sizing: border-box; }
@@ -38,7 +50,10 @@ h1, h2, h3 { font-family: var(--font-heading); margin: 0 0 0.4em; }
   box-shadow: var(--shadow);
 }
 .menu-header h1 { font-size: 1.6rem; }
-.menu-updated { color: var(--color-text-light); font-size: 0.9rem; margin: 0; }
+.menu-logo { display: block; margin: 0 auto 0.7rem; border-radius: 16px; box-shadow: 0 8px 18px rgba(193, 39, 45, 0.25); }
+.menu-meta { color: var(--color-text); font-size: 0.92rem; font-weight: 500; margin: 0 0 0.25rem; }
+.menu-meta span { display: block; }
+.menu-updated { color: var(--color-text-light); font-size: 0.85rem; margin: 0; }
 
 /* Category nav */
 .category-nav {
@@ -49,21 +64,48 @@ h1, h2, h3 { font-family: var(--font-heading); margin: 0 0 0.4em; }
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.7rem 1.25rem;
+  scrollbar-width: none;
+  /* en pantallas anchas las categorías se alinean con el contenido, no con el borde */
+  padding: 0.7rem max(1.25rem, calc((100% - var(--max-width)) / 2 + 1.25rem));
   box-shadow: var(--shadow);
 }
+.category-nav::-webkit-scrollbar { display: none; }
 .category-nav a {
+  position: relative;
   flex: none;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: var(--color-bg);
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
   white-space: nowrap;
+  transition: color 200ms ease, transform 140ms var(--ease-fluid);
 }
-.category-nav a.active { background: var(--color-primary); color: white; }
+/* el fondo de cada categoría va por debajo de la pastilla activa, y el texto por encima */
+.category-nav a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  background: var(--color-bg);
+}
+.category-nav a.active { color: white; }
+.category-nav a.active::before { background: transparent; }
+.category-nav a:active { transform: scale(0.96); }
+.category-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(193, 39, 45, 0.3);
+}
+.category-nav.lista .category-indicator {
+  transition: transform 340ms var(--ease-fluid), width 340ms var(--ease-fluid);
+}
 
 /* Menu content */
 main { padding: 1.5rem 0 3rem; }
@@ -85,6 +127,19 @@ main { padding: 1.5rem 0 3rem; }
   box-shadow: var(--shadow);
   padding: 1rem 1.2rem;
   margin-bottom: 0.8rem;
+  transition: transform 200ms var(--ease-fluid), box-shadow 200ms ease;
+}
+@media (hover: hover) {
+  .item-card:not(.agotado):hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(43, 35, 32, 0.12); }
+}
+
+/* Entrada de cada categoría: el título y después los platos, en escalera (--orden) */
+.category-block.espera .category-title,
+.category-block.espera .item-card { opacity: 0; }
+.category-block.entra .category-title { animation: entra-fila 420ms var(--ease-fluid) both; }
+.category-block.entra .item-card {
+  animation: entra-fila 480ms var(--ease-fluid) both;
+  animation-delay: calc(80ms + var(--orden, 0) * 55ms);
 }
 .item-card.agotado { background: #f3efea; box-shadow: none; }
 .item-card.agotado .item-price { color: var(--color-text-light); text-decoration: line-through; }
@@ -108,6 +163,8 @@ main { padding: 1.5rem 0 3rem; }
 /* Footer */
 .site-footer { background: var(--color-text); color: white; padding: 1.2rem 0; text-align: center; font-size: 0.85rem; }
 .site-footer a { color: white; font-weight: 600; }
+/* el botón de WhatsApp queda fijo abajo: el pie le deja lugar para que no tape el texto */
+.site-footer--flotante { padding-bottom: calc(1.2rem + 58px + 1.25rem + env(safe-area-inset-bottom, 0px)); }
 
 /* WhatsApp floating button */
 .whatsapp-float {
@@ -123,7 +180,21 @@ main { padding: 1.5rem 0 3rem; }
   justify-content: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 30;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  transition: transform 160ms var(--ease-fluid), box-shadow 160ms ease;
+  animation: entra-escala 420ms var(--ease-fluid) 500ms both;
 }
+.whatsapp-float:active { transform: scale(0.93); }
+@media (hover: hover) {
+  .whatsapp-float:hover { transform: scale(1.06); box-shadow: 0 12px 26px rgba(0,0,0,0.3); }
+}
+
+/* Encabezado: el logo y el nombre entran una sola vez, al abrir el menú */
+.menu-logo { animation: entra-escala 520ms var(--ease-fluid) both; }
+.menu-header h1, .menu-meta, .menu-updated { animation: entra-fila 480ms var(--ease-fluid) both; }
+.menu-header h1 { animation-delay: 90ms; }
+.menu-meta { animation-delay: 150ms; }
+.menu-updated { animation-delay: 200ms; }
 
 /* Buttons (admin) */
 .btn {
@@ -137,6 +208,11 @@ main { padding: 1.5rem 0 3rem; }
   border: none;
   cursor: pointer;
   font-size: 0.95rem;
+  transition: transform 140ms var(--ease-fluid), filter 160ms ease;
+}
+.btn:active { transform: scale(0.97); }
+@media (hover: hover) {
+  .btn:hover { filter: brightness(1.08); }
 }
 .btn-primary { background: var(--color-primary); color: white; }
 .btn-whatsapp { background: #0f7a40; color: white; }
@@ -187,4 +263,16 @@ main { padding: 1.5rem 0 3rem; }
 @media (min-width: 640px) {
   .edit-row { grid-template-columns: 2fr 1fr; }
   .edit-row-toggles, .edit-row-footer { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

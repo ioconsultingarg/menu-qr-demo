@@ -2,6 +2,8 @@
   "negocio": {
     "nombre": "Pizzería IO Consulting",
     "whatsapp": "5491155555555",
+    "direccion": "Av. Demo 1234, Buenos Aires",
+    "horario": "Todos los días de 19 a 00 h",
     "actualizado": "2026-08-31"
   },
   "categorias": [
