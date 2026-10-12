@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error(err);
     });
 
+  function buildBadge(className, text) {
+    var badge = document.createElement('span');
+    badge.className = 'badge ' + className;
+    badge.textContent = text;
+    return badge;
+  }
+
   function renderMenu(data) {
     document.getElementById('nombreNegocio').textContent = data.negocio.nombre;
     document.getElementById('fechaActualizado').textContent = data.negocio.actualizado;
@@ -44,17 +51,28 @@ document.addEventListener('DOMContentLoaded', function () {
         var card = document.createElement('article');
         card.className = 'item-card' + (item.agotado ? ' agotado' : '');
 
-        var badges = '';
-        if (item.destacado && !item.agotado) badges += '<span class="badge badge-destacado">Plato del día</span>';
-        if (item.agotado) badges += '<span class="badge badge-agotado">Agotado</span>';
+        // textContent en vez de innerHTML: el contenido del menú nunca se interpreta como HTML
+        var info = document.createElement('div');
+        info.className = 'item-info';
 
-        card.innerHTML =
-          '<div class="item-info">' +
-            '<h3>' + item.nombre + ' ' + badges + '</h3>' +
-            (item.descripcion ? '<p>' + item.descripcion + '</p>' : '') +
-          '</div>' +
-          '<div class="item-price">$' + Number(item.precio).toLocaleString('es-AR') + '</div>';
+        var name = document.createElement('h3');
+        name.textContent = item.nombre + ' ';
+        if (item.destacado && !item.agotado) name.appendChild(buildBadge('badge-destacado', 'Plato del día'));
+        if (item.agotado) name.appendChild(buildBadge('badge-agotado', 'Agotado'));
+        info.appendChild(name);
 
+        if (item.descripcion) {
+          var desc = document.createElement('p');
+          desc.textContent = item.descripcion;
+          info.appendChild(desc);
+        }
+
+        var price = document.createElement('div');
+        price.className = 'item-price';
+        price.textContent = '$' + Number(item.precio).toLocaleString('es-AR');
+
+        card.appendChild(info);
+        card.appendChild(price);
         block.appendChild(card);
       });
 

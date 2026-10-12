@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel del dueño — Menú IO Consulting</title>
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -33,7 +35,11 @@
   <section class="admin-panel">
     <div class="admin-panel-header">
       <h2>Editar platos</h2>
-      <button id="btnAgregar" class="btn btn-primary">+ Agregar plato</button>
+      <div class="admin-add">
+        <label for="selCategoria">Agregar en</label>
+        <select id="selCategoria"></select>
+        <button id="btnAgregar" class="btn btn-primary" type="button">+ Agregar plato</button>
+      </div>
     </div>
     <p class="admin-hint">Cambiá precios, marcá "agotado" o "plato del día", y al terminar tocá <strong>"Descargar menu.json"</strong> — reemplazá ese archivo en el repo (carpeta <code>data/</code>) y subilo a GitHub para publicar los cambios.</p>
     <div id="editorList"></div>

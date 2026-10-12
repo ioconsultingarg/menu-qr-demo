@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(function (res) { return res.json(); })
     .then(function (data) {
       menuData = data;
+      renderCategorias();
       renderQR();
       renderEditor();
     })
@@ -13,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
         '<p>No se pudo cargar data/menu.json. Si estás abriendo el archivo directo (file://), levantá un servidor local (ver README).</p>';
       console.error(err);
     });
+
+  function renderCategorias() {
+    var select = document.getElementById('selCategoria');
+    menuData.categorias.forEach(function (cat, catIndex) {
+      var option = document.createElement('option');
+      option.value = catIndex;
+      option.textContent = cat.nombre;
+      select.appendChild(option);
+    });
+  }
 
   function renderQR() {
     var menuUrl = window.location.href.replace('admin.html', 'index.html');
@@ -48,16 +59,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     row.innerHTML =
       '<div>' +
-        '<label>Nombre</label>' +
-        '<input type="text" data-field="nombre" value="' + escapeAttr(item.nombre) + '">' +
+        '<label>Nombre' +
+          '<input type="text" data-field="nombre" value="' + escapeAttr(item.nombre) + '">' +
+        '</label>' +
       '</div>' +
       '<div>' +
-        '<label>Precio</label>' +
-        '<input type="number" data-field="precio" value="' + item.precio + '">' +
+        '<label>Precio' +
+          '<input type="number" min="0" data-field="precio" value="' + escapeAttr(item.precio) + '">' +
+        '</label>' +
       '</div>' +
-      '<div style="grid-column: 1 / -1">' +
-        '<label>Descripción</label>' +
-        '<input type="text" data-field="descripcion" value="' + escapeAttr(item.descripcion || '') + '">' +
+      '<div class="edit-row-full">' +
+        '<label>Descripción' +
+          '<input type="text" data-field="descripcion" value="' + escapeAttr(item.descripcion || '') + '">' +
+        '</label>' +
       '</div>' +
       '<div class="edit-row-toggles">' +
         '<label><input type="checkbox" data-field="agotado" ' + (item.agotado ? 'checked' : '') + '> Agotado</label>' +
@@ -83,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     row.querySelector('.btn-danger').addEventListener('click', function () {
+      if (!confirm('¿Eliminar "' + item.nombre + '" del menú?')) return;
       cat.items.splice(itemIndex, 1);
       renderEditor();
     });
@@ -93,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('btnAgregar').addEventListener('click', function () {
     var nombre = prompt('Nombre del nuevo plato:');
     if (!nombre) return;
-    var cat = menuData.categorias[0];
+    var cat = menuData.categorias[document.getElementById('selCategoria').value] || menuData.categorias[0];
     cat.items.push({
       id: 'item-' + Date.now(),
       nombre: nombre,

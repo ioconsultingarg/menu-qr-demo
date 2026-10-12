@@ -1,4 +1,4 @@
-/* Variables de tema — cambiar esto alcanza para adaptar a otro rubro */
+/* Variables de tema */
 :root {
   --color-primary: #c1272d;
   --color-primary-dark: #8f1a1f;
@@ -86,7 +86,8 @@ main { padding: 1.5rem 0 3rem; }
   padding: 1rem 1.2rem;
   margin-bottom: 0.8rem;
 }
-.item-card.agotado { opacity: 0.55; }
+.item-card.agotado { background: #f3efea; box-shadow: none; }
+.item-card.agotado .item-price { color: var(--color-text-light); text-decoration: line-through; }
 .item-info h3 { font-size: 1.05rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .item-info p { margin: 0; color: var(--color-text-light); font-size: 0.9rem; }
 .item-price { font-weight: 700; color: var(--color-primary); white-space: nowrap; align-self: center; }
@@ -100,12 +101,13 @@ main { padding: 1.5rem 0 3rem; }
   letter-spacing: 0.02em;
 }
 .badge-destacado { background: var(--color-secondary); color: #4a3200; }
-.badge-agotado { background: #e4e4e4; color: #6b6b6b; }
+.badge-agotado { background: #e4e4e4; color: #4a4a4a; }
 
 .loading { text-align: center; color: var(--color-text-light); padding: 2rem 0; }
 
 /* Footer */
 .site-footer { background: var(--color-text); color: white; padding: 1.2rem 0; text-align: center; font-size: 0.85rem; }
+.site-footer a { color: white; font-weight: 600; }
 
 /* WhatsApp floating button */
 .whatsapp-float {
@@ -137,7 +139,7 @@ main { padding: 1.5rem 0 3rem; }
   font-size: 0.95rem;
 }
 .btn-primary { background: var(--color-primary); color: white; }
-.btn-whatsapp { background: var(--color-whatsapp); color: white; }
+.btn-whatsapp { background: #0f7a40; color: white; }
 .btn-danger { background: transparent; color: var(--color-danger); border: 1px solid var(--color-danger); padding: 0.4rem 0.9rem; font-size: 0.85rem; }
 
 /* Admin */
@@ -172,6 +174,11 @@ main { padding: 1.5rem 0 3rem; }
   font-size: 0.9rem;
 }
 .edit-row label { font-size: 0.8rem; font-weight: 600; color: var(--color-text-light); display: block; margin-bottom: 0.2rem; }
+.edit-row label > input[type="text"], .edit-row label > input[type="number"] { margin-top: 0.2rem; }
+.edit-row-full { grid-column: 1 / -1; }
+.admin-add { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.admin-add label { font-size: 0.85rem; font-weight: 600; color: var(--color-text-light); }
+.admin-add select { padding: 0.55rem 0.6rem; border: 1px solid rgba(0,0,0,0.15); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: white; }
 .edit-row-toggles { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
 .edit-row-toggles label { display: flex; align-items: center; gap: 0.4rem; font-weight: 500; color: var(--color-text); }
 .edit-row-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; }

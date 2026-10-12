@@ -19,7 +19,7 @@ El dueño de un restaurante cambia precios o se le agota un plato varias veces p
 ## Demo
 
 - Menú público: `https://ioconsultingarg.github.io/menu-qr-demo/`
-- Panel del dueño (privado, no lincear públicamente): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
+- Panel del dueño (en la demo es de acceso libre y no puede publicar nada: solo descarga un archivo): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
 
 ![Demo del panel admin: edición de precio y disponibilidad en vivo, con generación de QR](assets/menu-qr-admin-demo.gif)
 
@@ -52,18 +52,14 @@ Es un paso manual a propósito: esta es la versión demo sin backend. En una imp
 
 `admin.html` genera automáticamente un QR que apunta a `index.html` en la URL donde esté publicado el sitio. Al abrir esa página, hacé clic derecho sobre el QR → "Guardar imagen como" para imprimirlo y pegarlo en las mesas.
 
-## Cómo adaptarlo a otro rubro
-
-1. Reemplazar `data/menu.json` por las categorías/productos del nuevo negocio (funciona igual para una carta de bar, una lista de servicios de peluquería, etc.).
-2. Cambiar las variables de color en `css/styles.css` (bloque `:root`).
-3. Actualizar el número de WhatsApp en `negocio.whatsapp` dentro de `menu.json`.
-
 ## Estructura
 
 ```
 menu-qr-demo/
 ├── index.html       (menú público — esto abre el QR)
 ├── admin.html        (panel del dueño + generador de QR)
+├── 404.html          (página de enlace no encontrado)
+├── assets/           (favicon, imagen para compartir el link, GIF del README)
 ├── css/styles.css
 ├── js/menu.js         (lógica del menú público)
 ├── js/admin.js         (lógica del editor y el QR)
