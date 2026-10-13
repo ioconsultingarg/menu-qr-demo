@@ -19,6 +19,7 @@
 
 <header class="menu-header">
   <div class="container container-wide">
+    <p class="menu-volver"><a href="index.html">← Menú digital por QR</a></p>
     <h1>Cambiá la carta en un toque</h1>
     <p class="menu-updated">Subís un precio o se termina un plato, y el menú de tus mesas cambia al instante. Sin reimprimir nada.</p>
   </div>
@@ -72,6 +73,21 @@
       <p class="admin-hint admin-hint-chica">En esta demo el QR lleva tu nombre y tu color. Los precios que cambies se ven en la vista previa; en tu local quedan guardados para todos.</p>
     </section>
 
+    <section class="admin-panel" aria-labelledby="tituloCuenta">
+      <p class="admin-step">Tu cuenta</p>
+      <h2 id="tituloCuenta">¿Cuánto te costó reimprimir este año?</h2>
+      <p class="admin-hint">Poné tus números. La cuenta es tuya: acá no hay promedios.</p>
+      <div class="cuenta">
+        <label class="admin-field" for="cuentaVeces">Veces que reimprimiste la carta
+          <input type="number" id="cuentaVeces" min="0" step="1" inputmode="numeric" placeholder="Ej.: 6">
+        </label>
+        <label class="admin-field" for="cuentaCosto">Lo que te costó cada vez ($)
+          <input type="number" id="cuentaCosto" min="0" step="1000" inputmode="numeric" placeholder="Ej.: 40000">
+        </label>
+      </div>
+      <p id="cuentaResultado" class="cuenta-resultado" aria-live="polite">Completá los dos números y te mostramos la cuenta.</p>
+    </section>
+
     <section class="admin-panel admin-cta" aria-labelledby="tituloCierre">
       <h2 id="tituloCierre">¿Lo querés en <span id="cierreNombre">tu local</span>?</h2>
       <p>Lo dejamos andando con tu carta, tus colores y el QR listo para imprimir. La primera reunión es sin costo.</p>
@@ -91,7 +107,7 @@
   <aside class="preview" aria-label="Vista previa del menú">
     <p class="preview-label"><span class="preview-dot" aria-hidden="true"></span>Así lo ve tu cliente</p>
     <div class="phone">
-      <iframe id="vistaPrevia" src="index.html" title="Vista previa del menú en un teléfono" loading="eager"></iframe>
+      <iframe id="vistaPrevia" src="menu.html" title="Vista previa del menú en un teléfono" loading="eager"></iframe>
     </div>
   </aside>
 

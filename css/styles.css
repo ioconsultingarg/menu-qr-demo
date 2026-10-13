@@ -377,6 +377,70 @@ main { padding: 1.5rem 0 3rem; }
 .admin-detalle summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--color-text-light); }
 .admin-detalle p { font-size: 0.9rem; color: var(--color-text-light); }
 
+.menu-volver { margin: 0 0 0.6rem; font-size: 0.85rem; }
+.menu-volver a { color: var(--color-text-light); text-decoration: none; font-weight: 600; }
+.menu-volver a:hover { color: var(--color-text); }
+
+/* La cuenta del dueño: dos números suyos y el total */
+.cuenta { display: grid; gap: 0 1rem; }
+@media (min-width: 560px) {
+  .cuenta { grid-template-columns: 1fr 1fr; }
+}
+.cuenta-resultado {
+  margin: 1.2rem 0 0;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  transition: background-color 240ms ease, color 240ms ease;
+}
+.cuenta-resultado.cuenta-lista { background: color-mix(in srgb, var(--color-primary) 9%, white); color: var(--color-text); font-size: 1.05rem; }
+.cuenta-resultado strong { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-primary); white-space: nowrap; }
+
+/* Entrada: el problema primero, y dos puertas */
+.entrada-body { min-height: 100vh; min-height: 100dvh; display: flex; background: linear-gradient(160deg, var(--color-bg-alt), var(--color-bg) 55%); }
+.entrada { width: 100%; display: grid; align-items: center; gap: 2.5rem; padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.entrada-marca { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 1.4rem; font-weight: 600; font-size: 0.9rem; color: var(--color-text-light); }
+.entrada-marca img { border-radius: 9px; }
+.entrada h1 { font-size: clamp(2rem, 6.2vw, 3.3rem); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1rem; text-wrap: balance; }
+.entrada-bajada { margin: 0 0 1.8rem; max-width: 46ch; font-size: 1.08rem; color: var(--color-text-light); text-wrap: pretty; }
+.puertas { display: grid; gap: 0.8rem; max-width: 30rem; }
+.puerta {
+  display: block;
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--radius);
+  background: var(--color-bg-alt);
+  border: 1px solid rgba(43, 35, 32, 0.14);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 160ms var(--ease-fluid), box-shadow 200ms ease, border-color 200ms ease;
+}
+.puerta-titulo { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 1.08rem; }
+.puerta-titulo::after { content: ' a0→'; }
+.puerta-detalle { display: block; margin-top: 0.2rem; font-size: 0.9rem; color: var(--color-text-light); }
+.puerta-principal { background: var(--color-primary); border-color: transparent; color: white; box-shadow: 0 14px 30px color-mix(in srgb, var(--color-primary) 32%, transparent); }
+.puerta-principal .puerta-detalle { color: white; opacity: 0.9; }
+.puerta:active { transform: scale(0.98); }
+@media (hover: hover) {
+  .puerta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(43, 35, 32, 0.14); border-color: rgba(43, 35, 32, 0.3); }
+  .puerta-principal:hover { box-shadow: 0 18px 38px color-mix(in srgb, var(--color-primary) 42%, transparent); border-color: transparent; }
+}
+.entrada-pie { margin: 2rem 0 0; font-size: 0.82rem; color: var(--color-text-light); }
+.entrada-pie a { color: inherit; font-weight: 600; }
+.entrada-telefono { display: none; }
+.entrada-marca, .entrada h1, .entrada-bajada, .puerta, .entrada-pie { animation: entra-fila 560ms var(--ease-fluid) both; }
+.entrada h1 { animation-delay: 70ms; }
+.entrada-bajada { animation-delay: 150ms; }
+.puerta-principal { animation-delay: 240ms; }
+.puerta:not(.puerta-principal) { animation-delay: 310ms; }
+.entrada-pie { animation-delay: 400ms; }
+@media (min-width: 900px) {
+  .entrada { grid-template-columns: minmax(0, 1.15fr) 360px; gap: 4rem; }
+  .entrada-telefono { display: block; animation: entra-fila 700ms var(--ease-fluid) 200ms both; }
+  .entrada-telefono .phone { height: min(660px, calc(100vh - 5rem)); transform: rotate(2deg); }
+}
+
 /* Teléfono con el menú en vivo */
 .preview { min-width: 0; }
 .preview-label { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 0 0 0.8rem; font-size: 0.85rem; font-weight: 600; color: var(--color-text-light); }

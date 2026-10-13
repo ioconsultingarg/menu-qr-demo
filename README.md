@@ -18,7 +18,8 @@ El dueño de un restaurante cambia precios o se le agota un plato varias veces p
 
 ## Demo
 
-- Menú público: `https://ioconsultingarg.github.io/menu-qr-demo/`
+- Entrada: `https://ioconsultingarg.github.io/menu-qr-demo/`
+- Menú público: `https://ioconsultingarg.github.io/menu-qr-demo/menu.html`
 - Panel del dueño, con vista previa en vivo (de acceso libre: no publica nada): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
 
 ![Demo del panel admin: edición de precio y disponibilidad en vivo, con generación de QR](assets/menu-qr-admin-demo.gif)
@@ -32,7 +33,7 @@ El dueño de un restaurante cambia precios o se le agota un plato varias veces p
 
 ## Cómo correrlo local
 
-El menú usa `fetch()` para cargar `data/menu.json`, así que no funciona abriendo `index.html` directo desde el explorador de archivos (protocolo `file://` bloquea el fetch). Levantá un servidor local simple:
+El menú usa `fetch()` para cargar `data/menu.json`, así que no funciona abriendo `menu.html` directo desde el explorador de archivos (protocolo `file://` bloquea el fetch). Levantá un servidor local simple:
 
 ```bash
 python3 -m http.server 8000
@@ -54,7 +55,8 @@ La demo no tiene servidor: los cambios viven en la pantalla y se pierden al reca
 
 ```
 menu-qr-demo/
-├── index.html       (menú público — esto abre el QR)
+├── index.html       (entrada: el problema y las dos puertas, dueño o cliente)
+├── menu.html         (menú público — esto abre el QR)
 ├── admin.html        (panel del dueño: vista previa en vivo, personalización y QR)
 ├── 404.html          (página de enlace no encontrado)
 ├── assets/           (favicon, imagen para compartir el link, GIF del README)

@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menú — Pizzería IO Consulting</title>
-<meta name="description" content="Menú digital de Pizzería IO Consulting. Escaneá el QR de la mesa y pedí por WhatsApp.">
+<title>Menú digital por QR — Demo de IO Consulting</title>
+<meta name="description" content="¿Cuántas veces reimprimiste la carta este año? Con el menú por QR cambiás un precio en un toque y tus mesas lo ven al instante. Probalo con tu local.">
 <meta name="theme-color" content="#c1272d">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'none'">
 <link rel="canonical" href="https://ioconsultingarg.github.io/menu-qr-demo/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://ioconsultingarg.github.io/menu-qr-demo/">
-<meta property="og:title" content="Menú digital por QR — Demo de IO Consulting">
-<meta property="og:description" content="El QR de la mesa no cambia; los precios y los platos sí, sin reimprimir la carta.">
+<meta property="og:title" content="¿Cuántas veces reimprimiste la carta este año?">
+<meta property="og:description" content="Con el menú por QR cambiás un precio en un toque y tus mesas lo ven al instante. Probalo con tu local.">
 <meta property="og:image" content="https://ioconsultingarg.github.io/menu-qr-demo/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,37 +24,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="entrada-body">
 
-<header class="menu-header">
-  <div class="container">
-    <img class="menu-logo" id="logoNegocio" src="assets/favicon.svg" alt="" width="56" height="56">
-    <div class="menu-logo menu-monograma" id="monogramaNegocio" aria-hidden="true" hidden></div>
-    <h1 id="nombreNegocio">Pizzería IO Consulting</h1>
-    <p class="menu-meta" id="datosNegocio" hidden></p>
-    <p class="menu-updated">Actualizado el <span id="fechaActualizado">—</span></p>
+<main class="container container-wide entrada">
+
+  <div class="entrada-texto">
+    <p class="entrada-marca">
+      <img src="assets/favicon.svg" alt="" width="32" height="32">
+      Menú digital por QR
+    </p>
+    <h1>¿Cuántas veces reimprimiste la carta este año?</h1>
+    <p class="entrada-bajada">Cada aumento y cada plato que se termina deja una carta vieja en la mesa. Con el menú por QR la cambiás vos, en un toque, y tus mesas la ven al instante.</p>
+
+    <div class="puertas">
+      <a class="puerta puerta-principal" href="admin.html">
+        <span class="puerta-titulo">Tengo un local: quiero probarlo</span>
+        <span class="puerta-detalle">Poné el nombre de tu negocio, cambiá un precio y miralo en el teléfono. Un minuto.</span>
+      </a>
+      <a class="puerta" href="menu.html">
+        <span class="puerta-titulo">Verlo como cliente</span>
+        <span class="puerta-detalle">Así lo ve quien escanea el QR en la mesa.</span>
+      </a>
+    </div>
+
+    <p class="entrada-pie">Demo desarrollada por <a href="https://ioconsulting.com.ar" target="_blank" rel="noopener">IO Consulting</a> · sin datos reales</p>
   </div>
-</header>
 
-<nav class="category-nav" id="categoryNav" aria-label="Categorías del menú"></nav>
-
-<main class="container">
-  <div id="menuContent" aria-live="polite">
-    <p class="loading">Cargando el menú…</p>
+  <div class="entrada-telefono">
+    <div class="phone">
+      <iframe src="menu.html" title="El menú de ejemplo, como se ve en un teléfono" loading="lazy"></iframe>
+    </div>
   </div>
+
 </main>
 
-<footer class="site-footer site-footer--flotante">
-  <div class="container">
-    <p>Menú digital · Demo desarrollado por <a href="https://ioconsulting.com.ar" target="_blank" rel="noopener">IO Consulting</a></p>
-    <p class="footer-dueno">¿Tenés un local? <a href="admin.html">Mirá cómo se maneja este menú</a></p>
-  </div>
-</footer>
-
-<a id="whatsappFloat" class="whatsapp-float" href="#" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
-</a>
-
-<script src="js/menu.js"></script>
 </body>
 </html>

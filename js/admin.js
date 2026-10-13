@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var vistaPrevia = document.getElementById('vistaPrevia');
   var vistaLista = false;
   var inputNombre = document.getElementById('nombreNegocioInput');
+  var inputVeces = document.getElementById('cuentaVeces');
+  var inputCosto = document.getElementById('cuentaCosto');
 
   fetch('data/menu.json')
     .then(function (res) { return res.json(); })
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function enlaceMenu() {
-    var url = new URL('index.html', window.location.href);
+    var url = new URL('menu.html', window.location.href);
     var parametros = new URLSearchParams();
     if (nombrePropio()) parametros.set('n', nombrePropio());
     if (menuData.negocio.color !== 'rojo') parametros.set('c', menuData.negocio.color);
@@ -89,17 +91,49 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.style.setProperty('--color-primary-dark', color[1]);
 
     document.getElementById('cierreNombre').textContent = nombre || 'tu local';
-    var mensaje = 'Hola, vi la demo del menú digital por QR' +
-      (nombre ? ' y la probé con mi local, ' + nombre : '') +
-      '. Quiero coordinar la reunión inicial.';
-    document.getElementById('btnContacto').setAttribute('href',
-      'https://wa.me/' + WHATSAPP_CONTACTO + '?text=' + encodeURIComponent(mensaje));
+    actualizarContacto();
 
     enviarVistaPrevia();
     // el QR se redibuja cuando se deja de escribir, no en cada tecla
     clearTimeout(relojQr);
     relojQr = setTimeout(renderQR, 250);
   }
+
+  /** El mensaje de WhatsApp lleva lo que el dueño ya contó: su local y cuántas veces reimprimió. */
+  function actualizarContacto() {
+    var nombre = nombrePropio();
+    var veces = Math.floor(Number(inputVeces.value) || 0);
+    var mensaje = 'Hola, vi la demo del menú digital por QR' +
+      (nombre ? ' y la probé con mi local, ' + nombre : '') + '.' +
+      (veces > 0 ? ' Este año reimprimí la carta ' + veces + (veces === 1 ? ' vez.' : ' veces.') : '') +
+      ' Quiero coordinar la reunión inicial.';
+    document.getElementById('btnContacto').setAttribute('href',
+      'https://wa.me/' + WHATSAPP_CONTACTO + '?text=' + encodeURIComponent(mensaje));
+  }
+
+  // La cuenta la hace el dueño con sus números: acá no hay promedios ni estimaciones nuestras
+  function actualizarCuenta() {
+    var veces = Math.max(0, Math.floor(Number(inputVeces.value) || 0));
+    var costo = Math.max(0, Number(inputCosto.value) || 0);
+    var resultado = document.getElementById('cuentaResultado');
+    var total = veces * costo;
+    resultado.textContent = '';
+    if (veces > 0 && costo > 0) {
+      var cifra = document.createElement('strong');
+      cifra.textContent = '$' + total.toLocaleString('es-AR', { maximumFractionDigits: 0 });
+      resultado.appendChild(document.createTextNode('Este año se te fueron '));
+      resultado.appendChild(cifra);
+      resultado.appendChild(document.createTextNode(' en reimprimir la carta. Con el menú por QR, cambiarla no cuesta una reimpresión.'));
+      resultado.classList.add('cuenta-lista');
+    } else {
+      resultado.textContent = 'Completá los dos números y te mostramos la cuenta.';
+      resultado.classList.remove('cuenta-lista');
+    }
+    actualizarContacto();
+  }
+
+  inputVeces.addEventListener('input', actualizarCuenta);
+  inputCosto.addEventListener('input', actualizarCuenta);
 
   inputNombre.addEventListener('input', actualizarNegocio);
   document.querySelectorAll('input[name="color"]').forEach(function (radio) {
