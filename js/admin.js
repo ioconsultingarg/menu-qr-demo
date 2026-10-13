@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // WhatsApp de IO Consulting, el mismo que figura en ioconsulting.com.ar
-  var WHATSAPP_CONTACTO = '5491139035123';
+  // Contacto de IO Consulting: solo el correo de la marca, ningún teléfono
+  var CORREO_CONTACTO = 'contacto@ioconsulting.com.ar';
 
   // mismos colores que js/menu.js
   var COLORES = {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     relojQr = setTimeout(renderQR, 250);
   }
 
-  /** El mensaje de WhatsApp lleva lo que el dueño ya contó: su local y cuántas veces reimprimió. */
+  /** El correo lleva lo que el dueño ya contó: su local y cuántas veces reimprimió. */
   function actualizarContacto() {
     var nombre = nombrePropio();
     var veces = Math.floor(Number(inputVeces.value) || 0);
@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded', function () {
       (veces > 0 ? ' Este año reimprimí la carta ' + veces + (veces === 1 ? ' vez.' : ' veces.') : '') +
       ' Quiero coordinar la reunión inicial.';
     document.getElementById('btnContacto').setAttribute('href',
-      'https://wa.me/' + WHATSAPP_CONTACTO + '?text=' + encodeURIComponent(mensaje));
+      'mailto:' + CORREO_CONTACTO +
+      '?subject=' + encodeURIComponent('Menú digital por QR' + (nombre ? ' para ' + nombre : '')) +
+      '&body=' + encodeURIComponent(mensaje));
   }
 
   // La cuenta la hace el dueño con sus números: acá no hay promedios ni estimaciones nuestras

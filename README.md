@@ -47,7 +47,7 @@ La puerta para quien evalúa el producto es `admin.html`:
 1. **Probalo con tu negocio:** se escribe el nombre del local y se elige un color. El menú y el QR toman esa identidad.
 2. **Cambiá la carta:** al tocar un precio, marcar "agotado" o "plato del día", el teléfono de la derecha muestra el cambio al instante y resalta el plato.
 3. **Escaneá tu QR de prueba:** el QR abre el menú con el nombre y el color elegidos (viajan en el enlace, después del `#`).
-4. **Lo quiero en mi local:** abre WhatsApp con IO Consulting y el mensaje ya escrito.
+4. **Lo quiero en mi local:** abre un correo a IO Consulting con el mensaje ya escrito.
 
 La demo no tiene servidor: los cambios viven en la pantalla y se pierden al recargar. En una implementación real el panel se conecta a una base de datos y lo que se cambia queda guardado para todas las mesas. La carta armada se puede descargar como `menu.json` desde "Cómo funciona esta demo por dentro".
 
