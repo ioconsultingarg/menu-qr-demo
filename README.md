@@ -19,7 +19,7 @@ El dueño de un restaurante cambia precios o se le agota un plato varias veces p
 ## Demo
 
 - Menú público: `https://ioconsultingarg.github.io/menu-qr-demo/`
-- Panel del dueño (en la demo es de acceso libre y no puede publicar nada: solo descarga un archivo): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
+- Panel del dueño, con vista previa en vivo (de acceso libre: no publica nada): `https://ioconsultingarg.github.io/menu-qr-demo/admin.html`
 
 ![Demo del panel admin: edición de precio y disponibilidad en vivo, con generación de QR](assets/menu-qr-admin-demo.gif)
 
@@ -39,25 +39,23 @@ python3 -m http.server 8000
 # abrir http://localhost:8000
 ```
 
-## Cómo editar el menú (versión demo)
+## Cómo se usa la demo
 
-1. Abrí `admin.html`, cambiá precios, marcá "agotado" o "plato del día", agregá o eliminá platos.
-2. Tocá **"Descargar menu.json"** — se descarga el archivo actualizado.
-3. Reemplazá `data/menu.json` en el repo por el descargado.
-4. Commit + push (o `git push` desde VS Code) — GitHub Pages se actualiza solo en 1-2 minutos.
+La puerta para quien evalúa el producto es `admin.html`:
 
-Es un paso manual a propósito: esta es la versión demo sin backend. En una implementación real para un cliente, el panel se conecta a Supabase o Google Sheets y los cambios se ven al instante, sin descargar ni subir nada.
+1. **Probalo con tu negocio:** se escribe el nombre del local y se elige un color. El menú y el QR toman esa identidad.
+2. **Cambiá la carta:** al tocar un precio, marcar "agotado" o "plato del día", el teléfono de la derecha muestra el cambio al instante y resalta el plato.
+3. **Escaneá tu QR de prueba:** el QR abre el menú con el nombre y el color elegidos (viajan en el enlace, después del `#`).
+4. **Lo quiero en mi local:** abre WhatsApp con IO Consulting y el mensaje ya escrito.
 
-## Cómo generar e imprimir el QR
-
-`admin.html` genera automáticamente un QR que apunta a `index.html` en la URL donde esté publicado el sitio. Al abrir esa página, hacé clic derecho sobre el QR → "Guardar imagen como" para imprimirlo y pegarlo en las mesas.
+La demo no tiene servidor: los cambios viven en la pantalla y se pierden al recargar. En una implementación real el panel se conecta a una base de datos y lo que se cambia queda guardado para todas las mesas. La carta armada se puede descargar como `menu.json` desde "Cómo funciona esta demo por dentro".
 
 ## Estructura
 
 ```
 menu-qr-demo/
 ├── index.html       (menú público — esto abre el QR)
-├── admin.html        (panel del dueño + generador de QR)
+├── admin.html        (panel del dueño: vista previa en vivo, personalización y QR)
 ├── 404.html          (página de enlace no encontrado)
 ├── assets/           (favicon, imagen para compartir el link, GIF del README)
 ├── css/styles.css

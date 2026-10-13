@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel del dueño — Menú IO Consulting</title>
+<title>Probalo con tu negocio — Menú digital por QR</title>
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -18,45 +18,86 @@
 <body class="admin-body">
 
 <header class="menu-header">
-  <div class="container">
-    <h1>Panel del dueño</h1>
-    <p class="menu-updated">Editá el menú y generá el QR para imprimir en las mesas.</p>
+  <div class="container container-wide">
+    <h1>Cambiá la carta en un toque</h1>
+    <p class="menu-updated">Subís un precio o se termina un plato, y el menú de tus mesas cambia al instante. Sin reimprimir nada.</p>
   </div>
 </header>
 
-<main class="container admin-main">
+<main class="container container-wide admin-layout">
 
-  <section class="admin-panel">
-    <h2>QR para la mesa</h2>
-    <p>Este QR apunta a la página del menú público (<code id="menuUrlText">index.html</code>). Descargalo o hacé captura para imprimirlo.</p>
-    <div id="qrcode" class="qr-box"></div>
-  </section>
+  <div class="admin-col">
 
-  <section class="admin-panel">
-    <div class="admin-panel-header">
-      <h2>Editar platos</h2>
-      <div class="admin-add">
-        <label for="selCategoria">Agregar en</label>
-        <select id="selCategoria"></select>
-        <button id="btnAgregar" class="btn btn-primary" type="button">+ Agregar plato</button>
+    <section class="admin-panel" aria-labelledby="tituloNegocio">
+      <p class="admin-step">Paso 1</p>
+      <h2 id="tituloNegocio">Probalo con tu negocio</h2>
+      <p class="admin-hint">Escribí el nombre de tu local y elegí un color. El menú y el QR pasan a ser los tuyos.</p>
+      <label class="admin-field" for="nombreNegocioInput">Nombre de tu local
+        <input type="text" id="nombreNegocioInput" maxlength="40" autocomplete="organization" placeholder="Ej.: La Esquina">
+      </label>
+      <fieldset class="swatches">
+        <legend>Color</legend>
+        <label class="swatch swatch--rojo"><input type="radio" name="color" value="rojo" checked><span class="sr-only">Rojo</span></label>
+        <label class="swatch swatch--naranja"><input type="radio" name="color" value="naranja"><span class="sr-only">Naranja</span></label>
+        <label class="swatch swatch--verde"><input type="radio" name="color" value="verde"><span class="sr-only">Verde</span></label>
+        <label class="swatch swatch--azul"><input type="radio" name="color" value="azul"><span class="sr-only">Azul</span></label>
+        <label class="swatch swatch--violeta"><input type="radio" name="color" value="violeta"><span class="sr-only">Violeta</span></label>
+        <label class="swatch swatch--grafito"><input type="radio" name="color" value="grafito"><span class="sr-only">Grafito</span></label>
+      </fieldset>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="tituloCarta">
+      <p class="admin-step">Paso 2</p>
+      <div class="admin-panel-header">
+        <h2 id="tituloCarta">Cambiá la carta</h2>
+        <div class="admin-add">
+          <label for="selCategoria">Agregar en</label>
+          <select id="selCategoria"></select>
+          <button id="btnAgregar" class="btn btn-primary" type="button">+ Agregar plato</button>
+        </div>
       </div>
+      <ul class="palancas">
+        <li><strong>Precio:</strong> lo cambiás acá y ya está en todas las mesas.</li>
+        <li><strong>Agotado:</strong> nadie pide lo que no hay.</li>
+        <li><strong>Plato del día:</strong> destacás lo que querés vender hoy.</li>
+      </ul>
+      <div id="editorList"></div>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="tituloQr">
+      <p class="admin-step">Paso 3</p>
+      <h2 id="tituloQr">Escaneá tu QR de prueba</h2>
+      <p class="admin-hint">Apuntale con la cámara del celular: vas a ver el menú con el nombre y el color de tu local, como lo vería un cliente en la mesa.</p>
+      <div id="qrcode" class="qr-box"></div>
+      <p class="admin-hint admin-hint-chica">En esta demo el QR lleva tu nombre y tu color. Los precios que cambies se ven en la vista previa; en tu local quedan guardados para todos.</p>
+    </section>
+
+    <section class="admin-panel admin-cta" aria-labelledby="tituloCierre">
+      <h2 id="tituloCierre">¿Lo querés en <span id="cierreNombre">tu local</span>?</h2>
+      <p>Lo dejamos andando con tu carta, tus colores y el QR listo para imprimir. La primera reunión es sin costo.</p>
+      <a id="btnContacto" class="btn btn-cta" href="mailto:contacto@ioconsulting.com.ar" target="_blank" rel="noopener">Lo quiero en mi local</a>
+      <p class="admin-hint admin-hint-chica">Te abre WhatsApp con IO Consulting y el mensaje ya escrito.</p>
+    </section>
+
+    <details class="admin-panel admin-detalle">
+      <summary>Cómo funciona esta demo por dentro</summary>
+      <p>Esta demo no tiene servidor: los cambios viven en esta pantalla y se pierden al recargar. En una implementación real el panel se conecta a una base de datos y lo que cambiás se ve al instante en el menú de todas las mesas.</p>
+      <p>Si querés llevarte la carta que armaste, podés descargarla como archivo.</p>
+      <button id="btnDescargar" class="btn btn-secondary" type="button">Descargar la carta (menu.json)</button>
+    </details>
+
+  </div>
+
+  <aside class="preview" aria-label="Vista previa del menú">
+    <p class="preview-label"><span class="preview-dot" aria-hidden="true"></span>Así lo ve tu cliente</p>
+    <div class="phone">
+      <iframe id="vistaPrevia" src="index.html" title="Vista previa del menú en un teléfono" loading="eager"></iframe>
     </div>
-    <p class="admin-hint">Cambiá precios, marcá "agotado" o "plato del día", y al terminar tocá <strong>"Descargar menu.json"</strong> — reemplazá ese archivo en el repo (carpeta <code>data/</code>) y subilo a GitHub para publicar los cambios.</p>
-    <div id="editorList"></div>
-  </section>
-
-  <section class="admin-panel">
-    <h2>Guardar cambios</h2>
-    <p class="admin-hint">Esto genera el archivo actualizado. No se sube solo a GitHub — hay que reemplazar <code>data/menu.json</code> en el repo y hacer commit + push.</p>
-    <button id="btnDescargar" class="btn btn-whatsapp">Descargar menu.json</button>
-  </section>
-
-  <section class="admin-panel admin-panel-note">
-    <h2>Nota</h2>
-    <p>Esta es una versión demo: la edición se hace exportando el archivo a mano. En una implementación real para un cliente, este panel se conecta a una base de datos (Supabase o Google Sheets) y los cambios se ven al instante en el menú público, sin descargar ni subir nada.</p>
-  </section>
+  </aside>
 
 </main>
+
+<div id="avisos" class="avisos" aria-live="polite"></div>
 
 <script src="js/admin.js"></script>
 </body>
